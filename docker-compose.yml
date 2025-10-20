@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: hospital_db
+    restart: always
+    environment:
+      POSTGRES_USER: hospital
+      POSTGRES_PASSWORD: hospital
+      POSTGRES_DB: hospitalDB
+    ports:
+      - "5433:5432"
+
+volumes:
+  postgres_data:
