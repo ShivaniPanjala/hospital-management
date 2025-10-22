@@ -24,7 +24,7 @@ public class PatientTest {
     @Autowired
     public PatientService patientService;
     @Test
-    public void testPatientService() {
+    public void testTransactionMethods() {
         Patient patient = patientService.getPatientById(566L);
 
         System.out.println(patient);
