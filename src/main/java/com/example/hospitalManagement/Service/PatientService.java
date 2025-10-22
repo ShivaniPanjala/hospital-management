@@ -32,4 +32,7 @@ public class PatientService {
         return p1;
     }
 
+    public Patient savePatient(Patient newPatient) {
+        return patientRepository.save(newPatient);
+    }
 }
