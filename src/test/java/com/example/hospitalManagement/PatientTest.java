@@ -58,6 +58,12 @@ public class PatientTest {
         }
 
 
+        List<Object[]> bloodGroupList = patientRepository.countEachBloodGroupType();
+        for(Object[] objects: bloodGroupList ) {
+            System.out.println(objects[0] +" "+ objects[1]);
+        }
+
+
     }
 
 

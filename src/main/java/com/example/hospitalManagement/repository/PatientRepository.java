@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public interface PatientRepository extends JpaRepository<Patient, Long> {
@@ -52,4 +53,7 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
 
     @Query("SELECT p FROM Patient p WHERE p.birthDate > :birthDate")
     List<Patient> findByBornAfterDate(@Param("birthDate") LocalDate birthDate);
+
+    @Query("SELECT p.bloodGroup, count(p) FROM Patient p GROUP BY  p.bloodGroup")
+    List<Object[]> countEachBloodGroupType();
 }
