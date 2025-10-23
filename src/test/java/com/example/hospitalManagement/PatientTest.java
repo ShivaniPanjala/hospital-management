@@ -16,11 +16,18 @@ public class PatientTest {
     public PatientRepository patientRepository;
 
 
+//    @Test
+//    public void testPatientRepository() {
+//        List<Patient> patientList = patientRepository.findAll();
+//        System.out.println(patientList);
+//    }
     @Test
-    public void testPatientRepository() {
-        List<Patient> patientList = patientRepository.findAll();
-        System.out.println(patientList);
+    public void testRepositoryMethods() {
+        Patient patient = patientRepository.findByName("Smith");
+        System.out.println(patient);
     }
+
+
 
     @Autowired
     public PatientService patientService;
@@ -40,6 +47,7 @@ public class PatientTest {
         Patient patient = patientService.getPatientById(1L);
         System.out.println(patient);
     }
+
 
 }
 
