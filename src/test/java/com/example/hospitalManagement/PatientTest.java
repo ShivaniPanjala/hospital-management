@@ -63,6 +63,11 @@ public class PatientTest {
             System.out.println(objects[0] +" "+ objects[1]);
         }
 
+        List<Patient> p4 = patientRepository.findAllPatients();
+        for(Patient Patient: p4) {
+            System.out.println(Patient);
+        }
+
 
     }
 
