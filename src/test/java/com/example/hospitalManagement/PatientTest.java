@@ -16,15 +16,32 @@ public class PatientTest {
     public PatientRepository patientRepository;
 
 
-//    @Test
-//    public void testPatientRepository() {
-//        List<Patient> patientList = patientRepository.findAll();
-//        System.out.println(patientList);
-//    }
     @Test
-    public void testRepositoryMethods() {
-        Patient patient = patientRepository.findByName("Smith");
-        System.out.println(patient);
+    public void testPatientRepository() {
+        List<Patient> patientList = patientRepository.findAll();
+        System.out.println(patientList);
+    }
+
+    @Test
+    public void testRepositoryCustomMethods() {
+        Patient p1 = patientRepository.findByName("Smith");
+        Patient p2 = patientRepository.findByBirthDate(LocalDate.of(2000, 5, 15));
+
+        List<Patient> patientList = patientRepository.findByBirthDateOrEmail(LocalDate.of(2000, 5, 15), "smith@example.com");
+        for(Patient patient: patientList){
+            System.out.println(patient);
+        }
+
+
+        List<Patient> pl = patientRepository.findByNameContaining("it");
+        for(Patient patient: pl){
+            System.out.println(patient);
+        }
+
+        List<Patient> p = patientRepository.findByNameContainingOrderByIdDesc("it");
+        for(Patient patient: p){
+            System.out.println(patient);
+        }
     }
 
 
