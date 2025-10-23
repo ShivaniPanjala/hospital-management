@@ -2,6 +2,7 @@ package com.example.hospitalManagement;
 
 import com.example.hospitalManagement.Service.PatientService;
 import com.example.hospitalManagement.entity.Patient;
+import com.example.hospitalManagement.entity.type.BloodGroupType;
 import com.example.hospitalManagement.repository.PatientRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,20 @@ public class PatientTest {
         }
     }
 
+    @Test
+    public void testRepositoryCustomQueries() {
+        List<Patient> p1 = patientRepository.findByBloodGroup(BloodGroupType.A_POSITIVE);
+        for(Patient Patient: p1) {
+            System.out.println(Patient);
+        }
+
+        List<Patient> p2 = patientRepository.findByBornAfterDate(LocalDate.of(2000, 4, 1));
+        for(Patient Patient: p2) {
+            System.out.println(Patient);
+        }
+
+
+    }
 
 
     @Autowired
