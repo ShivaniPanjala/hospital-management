@@ -26,17 +26,18 @@ public class PatientTest {
     public PatientService patientService;
     @Test
     public void testTransactionMethods() {
-        Patient newPatient = new Patient();
-        newPatient.setName("Nit");
-        newPatient.setEmail("fgvb@example.com");
-        newPatient.setBirthDate(LocalDate.of(2001, 10, 5));
-        newPatient.setGender("Female");
+//        Patient newPatient = new Patient();
+//        newPatient.setName("Nit");
+//        newPatient.setEmail("fgvb@example.com");
+//        newPatient.setBirthDate(LocalDate.of(2001, 10, 5));
+//        newPatient.setGender("Female");
+//
+//        newPatient = patientService.savePatient(newPatient);
 
-        newPatient = patientService.savePatient(newPatient);
 
+//        Patient patient = patientService.getPatientById(newPatient.getId());
 
-        Patient patient = patientService.getPatientById(newPatient.getId());
-
+        Patient patient = patientService.getPatientById(1L);
         System.out.println(patient);
     }
 

@@ -5,6 +5,7 @@ import com.example.hospitalManagement.repository.PatientRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RestController;
 
 @Service
 @AllArgsConstructor
