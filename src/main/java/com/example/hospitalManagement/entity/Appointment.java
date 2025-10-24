@@ -21,6 +21,6 @@ public class Appointment {
          that references the primary key of the Patient entity.
     */
     @ManyToOne // Many Appointments to One Patient
-    @JoinColumn(name = "patient_id", nullable = false) //patient is required and not nullable
+    @JoinColumn(name = "patient_id", nullable = false) //patient is required and not nullable,  Owning side
     private Patient patient;
 }

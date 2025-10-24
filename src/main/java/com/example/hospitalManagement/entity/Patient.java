@@ -71,6 +71,13 @@ public class Patient {
     @JoinColumn(name = "patient_insurance_id") // foreign key in Patient table // owning side
     private Insurance insurance;
 
-    @OneToMany(mappedBy = "patients")
+    /*
+    Establishes a one-to-many relationship between Patient and Appointment.
+    One patient can have many appointments, but each appointment belongs to only one patient.
+    The 'mappedBy' attribute indicates that this is the inverse (non-owning) side of the relationship,
+    and the 'patient' field in the Appointment entity owns the relationship and contains the foreign key.
+     */
+
+    @OneToMany(mappedBy = "patient") //inverse side
     private List<Appointment> appointments;
 }
