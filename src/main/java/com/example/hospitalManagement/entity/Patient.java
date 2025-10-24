@@ -62,4 +62,11 @@ public class Patient {
 
     @Enumerated(EnumType.STRING )
     private BloodGroupType bloodGroup;
+
+    // Establishes a one-to-one relationship between this entity and the Insurance entity.
+    // The @JoinColumn specifies the foreign key column ("patient_insurance_id") in this table
+    // that references the primary key of the Insurance table
+    @OneToOne
+    @JoinColumn(name = "patient_insurance_id") // foreign key in Patient table // owning side
+    private Insurance insurance;
 }
