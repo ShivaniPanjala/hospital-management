@@ -8,6 +8,9 @@ import com.example.hospitalManagement.repository.PatientRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -64,10 +67,11 @@ public class PatientTest {
 //            System.out.println(objects[0] +" "+ objects[1]);
 //        }
 
-        List<Patient> p4 = patientRepository.findAllPatients();
-        for(Patient Patient: p4) {
-            System.out.println(Patient);
-        }
+//        Native query test
+//        List<Patient> p4 = patientRepository.findAllPatients();
+//        for(Patient Patient: p4) {
+//            System.out.println(Patient);
+//        }
 
         int rowsUpdated = patientRepository.updateNameWithId("Shivani", 1L);
         System.out.println(rowsUpdated);
@@ -76,6 +80,11 @@ public class PatientTest {
             System.out.println(bloodGroupCountResponse);
         }
 
+        // Fetches a paginated list of patients — 2 records per page, sorted by 'name' in ascending order
+        Page<Patient> p4 = patientRepository.findAllPatients(PageRequest.of(0, 2, Sort.by("name")));
+        for(Patient Patient: p4) {
+            System.out.println(Patient);
+        }
 
     }
 
