@@ -2,7 +2,9 @@ package com.example.hospitalManagement.repository;
 
 import com.example.hospitalManagement.entity.Patient;
 import com.example.hospitalManagement.entity.type.BloodGroupType;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -59,4 +61,9 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
 
     @Query(value = "SELECT * From Patient", nativeQuery = true)
     List<Patient> findAllPatients();
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE Patient p SET p.name = :name where p.id =:id")
+    int updateNameWithId(@Param("name") String name, @Param("id") Long id);
 }

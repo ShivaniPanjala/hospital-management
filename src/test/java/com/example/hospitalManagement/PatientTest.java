@@ -68,6 +68,9 @@ public class PatientTest {
             System.out.println(Patient);
         }
 
+        int rowsUpdated = patientRepository.updateNameWithId("Shivani", 1L);
+        System.out.println(rowsUpdated);
+
 
     }
 
