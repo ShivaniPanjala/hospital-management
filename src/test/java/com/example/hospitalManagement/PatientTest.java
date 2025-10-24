@@ -1,6 +1,7 @@
 package com.example.hospitalManagement;
 
 import com.example.hospitalManagement.Service.PatientService;
+import com.example.hospitalManagement.dto.BloodGroupCountResponseDto;
 import com.example.hospitalManagement.entity.Patient;
 import com.example.hospitalManagement.entity.type.BloodGroupType;
 import com.example.hospitalManagement.repository.PatientRepository;
@@ -58,10 +59,10 @@ public class PatientTest {
         }
 
 
-        List<Object[]> bloodGroupList = patientRepository.countEachBloodGroupType();
-        for(Object[] objects: bloodGroupList ) {
-            System.out.println(objects[0] +" "+ objects[1]);
-        }
+//        List<Object[]> bloodGroupList = patientRepository.countEachBloodGroupType();
+//        for(Object[] objects: bloodGroupList ) {
+//            System.out.println(objects[0] +" "+ objects[1]);
+//        }
 
         List<Patient> p4 = patientRepository.findAllPatients();
         for(Patient Patient: p4) {
@@ -70,6 +71,10 @@ public class PatientTest {
 
         int rowsUpdated = patientRepository.updateNameWithId("Shivani", 1L);
         System.out.println(rowsUpdated);
+        List<BloodGroupCountResponseDto> bloodGroupCount = patientRepository.countEachBloodGroupType();
+        for(BloodGroupCountResponseDto bloodGroupCountResponse: bloodGroupCount ) {
+            System.out.println(bloodGroupCountResponse);
+        }
 
 
     }

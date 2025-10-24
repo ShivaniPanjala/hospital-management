@@ -1,5 +1,6 @@
 package com.example.hospitalManagement.repository;
 
+import com.example.hospitalManagement.dto.BloodGroupCountResponseDto;
 import com.example.hospitalManagement.entity.Patient;
 import com.example.hospitalManagement.entity.type.BloodGroupType;
 import jakarta.transaction.Transactional;
@@ -10,8 +11,6 @@ import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 
 public interface PatientRepository extends JpaRepository<Patient, Long> {
     Patient findByName(String name);
@@ -56,8 +55,8 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
     @Query("SELECT p FROM Patient p WHERE p.birthDate > :birthDate")
     List<Patient> findByBornAfterDate(@Param("birthDate") LocalDate birthDate);
 
-    @Query("SELECT p.bloodGroup, count(p) FROM Patient p GROUP BY  p.bloodGroup")
-    List<Object[]> countEachBloodGroupType();
+//    @Query("SELECT p.bloodGroup, count(p) FROM Patient p GROUP BY  p.bloodGroup")
+//    List<Object[]> countEachBloodGroupType();
 
     @Query(value = "SELECT * From Patient", nativeQuery = true)
     List<Patient> findAllPatients();
@@ -66,4 +65,8 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
     @Modifying
     @Query("UPDATE Patient p SET p.name = :name where p.id =:id")
     int updateNameWithId(@Param("name") String name, @Param("id") Long id);
+
+
+    @Query("SELECT new com.example.hospitalManagement.dto.BloodGroupCountResponseDto( p.bloodGroup, count(p)) FROM Patient p GROUP BY  p.bloodGroup")
+    List<BloodGroupCountResponseDto> countEachBloodGroupType();
 }
