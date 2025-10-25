@@ -1,8 +1,16 @@
 package com.example.hospitalManagement.entity;
 import jakarta.persistence.*;
+import lombok.*;
+
 import java.time.LocalDate;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Builder
+@ToString
 public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,4 +31,8 @@ public class Appointment {
     @ManyToOne // Many Appointments to One Patient
     @JoinColumn(name = "patient_id", nullable = false) //patient is required and not nullable,  Owning side
     private Patient patient;
+
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Doctor doctor;
 }
