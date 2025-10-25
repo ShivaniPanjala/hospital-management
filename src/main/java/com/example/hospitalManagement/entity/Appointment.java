@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Builder
-@ToString
+
 public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

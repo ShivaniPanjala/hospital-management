@@ -86,7 +86,7 @@ public class Patient {
                             it will also be deleted from the database (not just unlinked).
      */
 
-    @OneToMany(mappedBy = "patient", cascade = {CascadeType.REMOVE}, orphanRemoval = true) //inverse side
-    @ToString.Exclude
+    @OneToMany(mappedBy = "patient", cascade = {CascadeType.REMOVE}, orphanRemoval = true, fetch = FetchType.EAGER) //inverse side
+//    @ToString.Exclude
     private List<Appointment> appointments = new ArrayList<>();
 }
