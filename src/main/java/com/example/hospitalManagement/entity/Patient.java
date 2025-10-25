@@ -64,10 +64,14 @@ public class Patient {
     @Enumerated(EnumType.STRING )
     private BloodGroupType bloodGroup;
 
-    // Establishes a one-to-one relationship between this entity and the Insurance entity.
-    // The @JoinColumn specifies the foreign key column ("patient_insurance_id") in this table
-    // that references the primary key of the Insurance table
-    @OneToOne
+    /* Establishes a one-to-one relationship between Patient entity and the Insurance entity.
+       The @JoinColumn specifies the foreign key column ("patient_insurance_id") in this table
+       that references the primary key of the Insurance table\
+
+        CascadeType.PERSIST → automatically saves the associated Insurance when a new Patient is saved.
+        CascadeType.MERGE → automatically updates the associated Insurance when the Patient is updated.
+    */
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "patient_insurance_id") // foreign key in Patient table // owning side
     private Insurance insurance;
 
@@ -78,6 +82,6 @@ public class Patient {
     and the 'patient' field in the Appointment entity owns the relationship and contains the foreign key.
      */
 
-    @OneToMany(mappedBy = "patient") //inverse side
-    private List<Appointment> appointments;
+//    @OneToMany(mappedBy = "patient") //inverse side
+//    private List<Appointment> appointments;
 }

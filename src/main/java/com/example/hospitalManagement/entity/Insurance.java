@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Getter
 @Setter
-@Builder
+@Builder //pattern to create object without using new keyword
 public class Insurance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
