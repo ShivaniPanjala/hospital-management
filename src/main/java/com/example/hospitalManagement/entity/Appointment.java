@@ -3,6 +3,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @AllArgsConstructor
@@ -17,7 +18,7 @@ public class Appointment {
     private Long id;
 
     @Column(nullable = false)
-    private LocalDate appointmentTime;
+    private LocalDateTime appointmentTime;
 
     @Column(length = 500)
     private String reason;

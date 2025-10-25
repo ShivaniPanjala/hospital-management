@@ -1,6 +1,8 @@
 package com.example.hospitalManagement;
 
+import com.example.hospitalManagement.Service.AppointmentService;
 import com.example.hospitalManagement.Service.InsuranceService;
+import com.example.hospitalManagement.entity.Appointment;
 import com.example.hospitalManagement.entity.Insurance;
 import com.example.hospitalManagement.entity.Patient;
 import org.junit.jupiter.api.Test;
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @SpringBootTest
 public class InsuranceTest {
@@ -28,5 +31,18 @@ public class InsuranceTest {
         System.out.println(patient);
     }
 
+    @Autowired
+    private AppointmentService appointmentService;
+
+    @Test
+    public void testCreateAppointment() {
+        Appointment appointment = Appointment.builder()
+                .appointmentTime(LocalDateTime.of(2025, 11, 1, 14, 0, 0))
+                .reason("Cancer")
+                .build();
+
+        var newAppointment = appointmentService.createNewAppointment(appointment, 1L, 2L);
+        System.out.println(newAppointment);
+    }
 }
 

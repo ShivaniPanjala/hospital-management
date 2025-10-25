@@ -9,6 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -80,8 +81,12 @@ public class Patient {
     One patient can have many appointments, but each appointment belongs to only one patient.
     The 'mappedBy' attribute indicates that this is the inverse (non-owning) side of the relationship,
     and the 'patient' field in the Appointment entity owns the relationship and contains the foreign key.
+    CascadeType.REMOVE → when a Patient is deleted, all their Appointments are also deleted automatically.
+    orphanRemoval = true → if an Appointment is removed from the patient's list in code,
+                            it will also be deleted from the database (not just unlinked).
      */
 
-//    @OneToMany(mappedBy = "patient") //inverse side
-//    private List<Appointment> appointments;
+    @OneToMany(mappedBy = "patient", cascade = {CascadeType.REMOVE}, orphanRemoval = true) //inverse side
+    @ToString.Exclude
+    private List<Appointment> appointments = new ArrayList<>();
 }
