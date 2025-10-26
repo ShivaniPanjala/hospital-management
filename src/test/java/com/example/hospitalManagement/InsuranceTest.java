@@ -29,7 +29,11 @@ public class InsuranceTest {
         Patient patient = insuranceService.assignInsuranceToPatient(insurance, 1L);
 
         System.out.println(patient);
+
+        var newPAtient = insuranceService.disaccociateInsuranceFromPatient(patient.getId());
+        System.out.println(newPAtient);
     }
+
 
     @Autowired
     private AppointmentService appointmentService;

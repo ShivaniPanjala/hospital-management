@@ -72,7 +72,7 @@ public class Patient {
         CascadeType.PERSIST → automatically saves the associated Insurance when a new Patient is saved.
         CascadeType.MERGE → automatically updates the associated Insurance when the Patient is updated.
     */
-    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @OneToOne(cascade = {CascadeType.ALL}, orphanRemoval = true)
     @JoinColumn(name = "patient_insurance_id") // foreign key in Patient table // owning side
     private Insurance insurance;
 

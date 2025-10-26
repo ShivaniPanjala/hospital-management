@@ -38,6 +38,12 @@ public class InsuranceService {
         // Return the updated patient; changes will be persisted automatically on transaction commit
         return patient;
     }
+    @Transactional
+    public Patient disaccociateInsuranceFromPatient(Long patientId) {
+        Patient patient = patientRepository.findById(patientId)
+                .orElseThrow(() -> new EntityNotFoundException("Patient not found with id: " + patientId));
 
-
+        patient.setInsurance(null);
+        return patient;
+    }
 }
