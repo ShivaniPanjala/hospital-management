@@ -38,4 +38,6 @@ public class InsuranceService {
         // Return the updated patient; changes will be persisted automatically on transaction commit
         return patient;
     }
+
+
 }

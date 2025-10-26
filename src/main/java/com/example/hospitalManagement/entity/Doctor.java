@@ -32,4 +32,6 @@ public class Doctor {
 
     @ManyToMany(mappedBy = "doctors")
     private Set<Department> departments = new HashSet<>();
+
+
 }

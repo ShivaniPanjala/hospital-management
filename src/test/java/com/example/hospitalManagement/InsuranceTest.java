@@ -43,6 +43,9 @@ public class InsuranceTest {
 
         var newAppointment = appointmentService.createNewAppointment(appointment, 1L, 2L);
         System.out.println(newAppointment);
+
+        var updateAppointment = appointmentService.reAssignAppointmentToAnotherDoctor(newAppointment.getId(), 3L);
+        System.out.println(updateAppointment);
     }
 }
 
