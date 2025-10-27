@@ -34,7 +34,7 @@ public class Appointment {
     @JoinColumn(name = "patient_id", nullable = false) //patient is required and not nullable,  Owning side
     private Patient patient;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
     @JoinColumn(nullable = false)
     private Doctor doctor;
