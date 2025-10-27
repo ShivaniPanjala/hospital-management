@@ -1,6 +1,6 @@
 package com.example.hospitalManagement;
 
-import com.example.hospitalManagement.Service.PatientService;
+import com.example.hospitalManagement.service.PatientService;
 import com.example.hospitalManagement.dto.BloodGroupCountResponseDto;
 import com.example.hospitalManagement.entity.Patient;
 import com.example.hospitalManagement.entity.type.BloodGroupType;

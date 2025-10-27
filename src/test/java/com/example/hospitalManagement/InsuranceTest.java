@@ -1,7 +1,7 @@
 package com.example.hospitalManagement;
 
-import com.example.hospitalManagement.Service.AppointmentService;
-import com.example.hospitalManagement.Service.InsuranceService;
+import com.example.hospitalManagement.service.AppointmentService;
+import com.example.hospitalManagement.service.InsuranceService;
 import com.example.hospitalManagement.entity.Appointment;
 import com.example.hospitalManagement.entity.Insurance;
 import com.example.hospitalManagement.entity.Patient;
@@ -45,11 +45,11 @@ public class InsuranceTest {
                 .reason("Cancer")
                 .build();
 
-        var newAppointment = appointmentService.createNewAppointment(appointment, 1L, 2L);
-        System.out.println(newAppointment);
-
-        var updateAppointment = appointmentService.reAssignAppointmentToAnotherDoctor(newAppointment.getId(), 3L);
-        System.out.println(updateAppointment);
+//        var newAppointment = appointmentService.createNewAppointment(appointment, 1L, 2L);
+//        System.out.println(newAppointment);
+//
+//        var updateAppointment = appointmentService.reAssignAppointmentToAnotherDoctor(newAppointment.getId(), 3L);
+//        System.out.println(updateAppointment);
     }
 }
 

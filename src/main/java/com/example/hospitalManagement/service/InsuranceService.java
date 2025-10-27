@@ -1,4 +1,4 @@
-package com.example.hospitalManagement.Service;
+package com.example.hospitalManagement.service;
 
 import com.example.hospitalManagement.entity.Insurance;
 import com.example.hospitalManagement.entity.Patient;
