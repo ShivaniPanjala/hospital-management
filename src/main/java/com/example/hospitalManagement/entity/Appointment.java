@@ -30,10 +30,12 @@ public class Appointment {
          that references the primary key of the Patient entity.
     */
     @ManyToOne // Many Appointments to One Patient
+    @ToString.Exclude
     @JoinColumn(name = "patient_id", nullable = false) //patient is required and not nullable,  Owning side
     private Patient patient;
 
     @ManyToOne
+    @ToString.Exclude
     @JoinColumn(nullable = false)
     private Doctor doctor;
 }
