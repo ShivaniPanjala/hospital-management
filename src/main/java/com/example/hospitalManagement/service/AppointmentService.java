@@ -48,7 +48,7 @@ public class AppointmentService {
         return modelMapper.map(appointment, AppointmentResponseDto.class);
     }
 
-//    @Transactional
+    @Transactional
     public Appointment reAssignAppointmentToAnotherDoctor(Long appointmentId, Long doctorId) {
         Appointment appointment = appointmentRepository.findById(appointmentId).orElseThrow();
         Doctor doctor = doctorRepository.findById(doctorId).orElseThrow();
