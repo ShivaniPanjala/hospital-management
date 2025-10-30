@@ -1,5 +1,6 @@
 package com.example.hospitalManagement;
 
+import com.example.hospitalManagement.dto.CreateAppointmentRequestDto;
 import com.example.hospitalManagement.service.AppointmentService;
 import com.example.hospitalManagement.service.InsuranceService;
 import com.example.hospitalManagement.entity.Appointment;
@@ -45,11 +46,31 @@ public class InsuranceTest {
                 .reason("Cancer")
                 .build();
 
-//        var newAppointment = appointmentService.createNewAppointment(appointment, 1L, 2L);
-//        System.out.println(newAppointment);
-//
-//        var updateAppointment = appointmentService.reAssignAppointmentToAnotherDoctor(newAppointment.getId(), 3L);
-//        System.out.println(updateAppointment);
+        CreateAppointmentRequestDto dto = new CreateAppointmentRequestDto();
+        dto.setDoctorId(1L);
+        dto.setPatientId(2L);
+        dto.setReason("Cancer");
+        dto.setAppointmentTime(LocalDateTime.of(2025, 11, 1, 14, 0, 0));
+
+        var newAppointment = appointmentService.createNewAppointment(dto);
+        System.out.println(newAppointment);
+
+
+        /* reAssignAppointmentToAnotherDoctor(),
+        you call 'doctor.getAppointments().add(appointment)' *after* fetching the doctor.
+        But since the method is NOT annotated with @Transactional,
+         the Hibernate Session that loaded the Doctor entity is already CLOSED
+         by the time you access the lazy collection.
+         So when Hibernate tries to fetch the lazy "appointments" collection,
+          there’s no active session to load it, leading to LazyInitializationException.
+
+           ✅ Fix:
+          Add @Transactional to the 'reAssignAppointmentToAnotherDoctor()' method
+
+         */
+
+        var updateAppointment = appointmentService.reAssignAppointmentToAnotherDoctor(newAppointment.getId(), 3L);
+        System.out.println(updateAppointment);
     }
 }
 
