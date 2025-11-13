@@ -1,6 +1,8 @@
 package com.example.hospitalManagement.service;
 
 import com.example.hospitalManagement.dto.DoctorResponseDto;
+import com.example.hospitalManagement.entity.Doctor;
+import com.example.hospitalManagement.exception.ResourceNotFoundException;
 import com.example.hospitalManagement.repository.DoctorRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -17,8 +19,11 @@ public class DoctorService {
 //    private final UserRepository userRepository;
 
     public List<DoctorResponseDto> getAllDoctors() {
-        return doctorRepository.findAll()
-                .stream()
+        List<Doctor> doctors = doctorRepository.findAll();
+        if (doctors.isEmpty()) {
+            throw new ResourceNotFoundException("No doctors found");
+        }
+        return doctors.stream()
                 .map(doctor -> modelMapper.map(doctor, DoctorResponseDto.class))
                 .collect(Collectors.toList());
     }
@@ -29,7 +34,7 @@ public class DoctorService {
 //        if(doctorRepository.existsById(onBoardDoctorRequestDto.getUserId())) {
 //            throw new IllegalArgumentException("Already a doctor");
 //        }
-//
+//e
 //        Doctor doctor = Doctor.builder()
 //                .name(onBoardDoctorRequestDto.getName())
 //                .specialization(onBoardDoctorRequestDto.getSpecialization())

@@ -1,5 +1,6 @@
 package com.example.hospitalManagement.controller;
 
+import com.example.hospitalManagement.exception.ResourceNotFoundException;
 import com.example.hospitalManagement.service.DoctorService;
 import com.example.hospitalManagement.dto.DoctorResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +19,12 @@ public class HospitalController {
 
     @GetMapping("/doctors")
     public ResponseEntity<List<DoctorResponseDto>> getAllDoctors() {
-        return ResponseEntity.ok(doctorService.getAllDoctors());
+        List<DoctorResponseDto> doctors = doctorService.getAllDoctors();
+        if (doctors.isEmpty()) {
+            throw new ResourceNotFoundException("No doctors found");
+        }
+        return ResponseEntity.ok(doctors);
+//        return ResponseEntity.ok(doctorService.getAllDoctors());
     }
 
 }
